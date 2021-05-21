@@ -1,0 +1,39 @@
+Package: TrackSOM
+Type: Package
+Title: Mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data
+Version: 0.1.0
+Authors@R: c(person("Givanna", "Putri", role = c("aut", "cre"),
+            email = "givanna.haryonoputri@sydney.edu.au"),
+            person("Davis", "Edwards", role = c("aut"),
+            email = "dedw4050@sydney.edu.au"),
+            person("Mark", "Read", role = c("aut"),
+            email = "mark.read@sydney.edu.au"))
+Description: TrackSOM is a novel automated gating and phenotype-tracking 
+    algorithm for cytometry data.
+    It combines the excellent clustering capacity and fast run time of FlowSOM 
+    with the tracking capability of ChronoClust, enabling it to map immune cell 
+    population dynamics against time and/or disease severity status.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.6.0)
+Imports:
+    pdist,
+    rlist,
+    FlowSOM,
+    flowCore,
+    data.table,
+    gtools,
+    tidygraph,
+    ggraph,
+    RColorBrewer,
+    viridis,
+    stringr,
+    igraph,
+    ggplot2,
+    Biobase
+Suggests:
+    testthat (>= 3.0.0),
+    devtools
+RoxygenNote: 7.1.1
+Config/testthat/edition: 3
