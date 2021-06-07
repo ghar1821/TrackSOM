@@ -86,3 +86,15 @@ outdir <- "~/Documents/phd/tracksom/sample_result"
 dir.create(outdir, recursive = TRUE)
 setwd(outdir)
 Spectre::write.files(cell.dat, "Result", divide.by = "timepoint")
+
+# make some visualisation
+TrackSOM::DrawNetworkPlot(dat = cell.dat,
+                          timepoint.col = "timepoint",
+                          timepoints = c('Mock', 'SYN-1', 'SYN-2', 'SYN-3', 'SYN-4'),
+                          cluster.col = 'TrackSOM_metacluster_lineage_tracking',
+                          marker.cols = ClusteringCols)
+TrackSOM::DrawTimeseriesHeatmap(dat = cell.dat,
+                                timepoint.col = "timepoint",
+                                timepoints = c('Mock', 'SYN-1', 'SYN-2', 'SYN-3', 'SYN-4'),
+                                cluster.col = 'TrackSOM_metacluster_lineage_tracking',
+                                marker.cols = ClusteringCols)

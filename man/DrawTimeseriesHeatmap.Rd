@@ -16,6 +16,8 @@ DrawTimeseriesHeatmap(dat, timepoint.col, timepoints, cluster.col,
 
 \item{cluster.col}{Column denoting the TrackSOM meta-cluster ID}
 
+\item{marker.cols}{Columns denoting the markers to plot}
+
 \item{colours}{Colour scheme for colouring the nodes. Can only be
 either one of the colours specified by the viridis package
 \url{https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html}
@@ -59,8 +61,6 @@ the meta-cluster IDs get too long.}
 nodes}
 
 \item{line.width}{Width of each edge}
-
-\item{marker.cols}{Columns denoting the markers to plot}
 
 \item{node.size}{Whether the nodes are to be sized based on the proportion of
 cells it captured ('auto') or just constant (a number denoting the node

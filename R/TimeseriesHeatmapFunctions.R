@@ -90,7 +90,7 @@ DrawTimeseriesHeatmap <- function(dat,
                                     timepoints,
                                     timepoint.col,
                                     cluster.col,
-                                    markers,
+                                    marker.cols,
                                     colours = 'viridis',
                                     plot.width = 12,
                                     plot.height = 15,
@@ -123,9 +123,9 @@ DrawTimeseriesHeatmap <- function(dat,
     calculation.type = match.arg(calculation.type)
 
     if (calculation.type == 'mean') {
-      centroids <- dat[, lapply(.SD, mean), by = grp, .SDcols = markers]
+      centroids <- dat[, lapply(.SD, mean), by = grp, .SDcols = marker.cols]
     } else if (calculation.type == 'median') {
-      centroids <- dat[, lapply(.SD, median), by = grp, .SDcols = markers]
+      centroids <- dat[, lapply(.SD, median), by = grp, .SDcols = marker.cols]
     }
 
     cellCount <- dat[, .(count = .N), by = grp]
@@ -228,7 +228,7 @@ DrawTimeseriesHeatmap <- function(dat,
   }
 
 
-  for (marker in markers) {
+  for (marker in marker.cols) {
     message(paste("Drawing timeseries heatmap coloured by", marker))
     plt <-
       ggplot(dat_chart, aes_string(x = timepoint.col, y = to_plot_node)) +
