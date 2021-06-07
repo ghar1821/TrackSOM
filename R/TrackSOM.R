@@ -17,8 +17,12 @@
 #'   TrackSOM will produce same number of meta clusters per time point.
 #'   Otherwise, it will use the entries in the vector. Number of meta clusters
 #'   must be at least 3 for each time point.
-#' @param tracking DEFAULT NULL. Whether to track cluster changes (TRUE), or
+#' @param tracking DEFAULT TRUE Whether to track cluster changes (TRUE), or
 #'   just cluster (NULL)
+#' @param dataFileType DEFAULT data.frame. What is the type of your inputFiles?
+#' @param xdim DEFAULT 10. SOM grid size.
+#' @param ydim DEFAULT 10. SOM grid size.
+#' @param seed DEFAULT 42. Random seed number.
 #' @param ... other parameters for FlowSOM functions ReadInput, BuildSOM and
 #'   BuildMST. See FlowSOM vignette for specific parameter information
 #'
