@@ -37,7 +37,7 @@ TrackSOM was used to analyse COVID-19 temporal data published in Cell Reports Me
 
 > Koutsakos, M., Rowntree, L.C., Hensen, L., Chua, B.Y., van de Sandt, C.E., Habel, J.R., Zhang, W., Jia, X., Kedzierski, L., Ashhurst, T.M. and Putri, G.H., 2021. Integrated immune dynamics define correlates of COVID-19 severity and antibody responses. Cell Reports Medicine, p.100208.
 
-The R scripts used to analyse the COVID-19 data are uploaded into pinst/publications/covid19_paper](https://github.com/ghar1821/TrackSOM/tree/master/inst/publications/covid19_paper) directory.
+The R scripts used to analyse the COVID-19 data are uploaded into [inst/publications/covid19_paper](https://github.com/ghar1821/TrackSOM/tree/master/inst/publications/covid19_paper) directory.
 
 ## License
 TrackSOM is released under the GPL-3.0 lincense, included [here](LICENSE).
