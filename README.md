@@ -1,7 +1,5 @@
 # TrackSOM
 
-![Screenshot](TrackSOMFigure.png)
-
 TrackSOM is a clustering and temporal cluster tracking algorithm for clustering and tracking cellular populationchanges in time- and disease-course cytometry data.
 
 ## Step by step walkthrough
