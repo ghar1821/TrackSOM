@@ -8,7 +8,10 @@ TrackSOM is a clustering and temporal cluster tracking algorithm for clustering 
 We are in the process of writing up a step by step walkthrough on how to use TrackSOM.
 For now, please check out a sample workflow script uploaded in [`inst/sample_workflow`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.R) directory.
 
-## Reference
+## Manuscript
+
+R scripts to reproduce evaluations and figures in our paper introducing the `TrackSOM` algorithm are available on [`TrackSOM-evaluations`](https://github.com/ghar1821/TrackSOM-evaluations) repository. 
+
 Please cite the following preprint if you find TrackSOM useful in your research.
 ```
 @article {Putri2021.06.08.447468,
@@ -37,7 +40,7 @@ TrackSOM was used to analyse COVID-19 temporal data published in Cell Reports Me
 
 > Koutsakos, M., Rowntree, L.C., Hensen, L., Chua, B.Y., van de Sandt, C.E., Habel, J.R., Zhang, W., Jia, X., Kedzierski, L., Ashhurst, T.M. and Putri, G.H., 2021. Integrated immune dynamics define correlates of COVID-19 severity and antibody responses. Cell Reports Medicine, p.100208.
 
-The R scripts used to analyse the COVID-19 data are uploaded into [inst/publications/covid19_paper](https://github.com/ghar1821/TrackSOM/tree/master/inst/publications/covid19_paper) directory.
+R scripts to reproduce evaluations and figures in the paper are available on [`TrackSOM-evaluations`](https://github.com/ghar1821/TrackSOM-evaluations) repository. 
 
 ## License
 TrackSOM is released under the GPL-3.0 lincense, included [here](LICENSE).
