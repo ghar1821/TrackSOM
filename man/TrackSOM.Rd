@@ -13,8 +13,11 @@ file containing data for a time point}
 \item{colsToUse}{NO DEFAULT. Vector of column names to be used to train SOM.
 One list which must be same for all time periods.}
 
-\item{tracking}{DEFAULT TRUE Whether to track cluster changes (TRUE), or
-just cluster (NULL)}
+\item{tracking}{DEFAULT TRUE. Whether to track cluster changes (TRUE), or
+just cluster (NULL).}
+
+\item{noMerge}{DEFAULT FALSE. Whether to allow meta-cluster merging (FALSE) 
+or not (TRUE).}
 
 \item{maxMeta}{DEFAULT NULL. Numeric. Maximum number of meta clusters for all
 time point. TrackSOM use this to limit the number of meta clusters allowed

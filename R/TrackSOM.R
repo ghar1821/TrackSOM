@@ -17,8 +17,10 @@
 #'   TrackSOM will produce same number of meta clusters per time point.
 #'   Otherwise, it will use the entries in the vector. Number of meta clusters
 #'   must be at least 3 for each time point.
-#' @param tracking DEFAULT TRUE Whether to track cluster changes (TRUE), or
-#'   just cluster (NULL)
+#' @param tracking DEFAULT TRUE. Whether to track cluster changes (TRUE), or
+#'   just cluster (NULL).
+#' @param noMerge DEFAULT FALSE. Whether to allow meta-cluster merging (FALSE) 
+#'   or not (TRUE).
 #' @param dataFileType DEFAULT data.frame. What is the type of your inputFiles?
 #' @param xdim DEFAULT 10. SOM grid size.
 #' @param ydim DEFAULT 10. SOM grid size.
