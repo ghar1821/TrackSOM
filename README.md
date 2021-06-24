@@ -10,6 +10,9 @@ TrackSOM includes a novel clustering and cluster-tracking algorithm, and a varie
 We are in the process of writing up a step by step walkthrough on how to use TrackSOM.
 For now, please check out a sample workflow script uploaded in [`inst/sample_workflow`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.R) directory.
 
+This `TrackSOM` repository captures the software protocol only, to reduce the download size for users. 
+The datasets used in our manuscript are [stored at the Open Science Framework](https://osf.io/8dvzu/) (they are too large for GitHub), and the [corresponding evaluation scripts use in the manuscript are available here](https://github.com/ghar1821/TrackSOM-evaluations). 
+
 ## Manuscript
 
 R scripts to reproduce evaluations and figures in our paper introducing the `TrackSOM` algorithm are available on [`TrackSOM-evaluations`](https://github.com/ghar1821/TrackSOM-evaluations) repository. 
