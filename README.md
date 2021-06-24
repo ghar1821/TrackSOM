@@ -19,7 +19,7 @@ R scripts to reproduce evaluations and figures in our paper introducing the `Tra
 
 Please cite the following preprint if you find TrackSOM useful in your research.
 
-> GH Putri, J Chung, DN Edwards, F Marsh-Wakefield, S Dervish, I Koprinska, NJC King, TM Ashhurst and MN Read. (2021). TrackSOM: mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data. bioRxiv: 10.1101/2021.06.08.447468
+> Givanna H. Putri, Jonathan Chung, Davis N. Edwards, Felix Marsh-Wakefield, Suat Dervish, Irena Koprinska, Nicholas J.C. King, Thomas M. Ashhurst and Mark N. Read. (2021). TrackSOM: mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data. bioRxiv 2021.06.08.447468; doi: https://doi.org/10.1101/2021.06.08.447468
 
 The preprint titled **TrackSOM: mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data** can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1).
 
