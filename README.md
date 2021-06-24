@@ -1,6 +1,10 @@
 # TrackSOM
 
-TrackSOM is a clustering and temporal cluster tracking algorithm for clustering and tracking cellular populationchanges in time- and disease-course cytometry data.
+TrackSOM is a software protocol for creating maps of how the dynamic immune response evolves over time and/or disease severity. 
+These data are captured in a sequence of cytometry datasets representing points in time, and/or disease stages. 
+TrackSOM will identify the immune cell populations (aka phenotypes) in these data, and how they evolve and vary over the dataset sequence. 
+This includes branching/splitting from common progenitors, appearing and disappearing, changing in absolute or relative phenotypic cell counts, or movements through marker space that signify differentiation and/or functional changes. 
+TrackSOM includes a novel clustering and cluster-tracking algorithm, and a variety of visualisation techniques to enable interpretation of the resultant maps. 
 
 ## Step by step walkthrough
 We are in the process of writing up a step by step walkthrough on how to use TrackSOM.
