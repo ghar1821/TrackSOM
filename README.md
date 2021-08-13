@@ -1,6 +1,10 @@
 # TrackSOM
 
-TrackSOM is a clustering and temporal cluster tracking algorithm for clustering and tracking cellular populationchanges in time- and disease-course cytometry data.
+TrackSOM is a software protocol for creating maps of how the dynamic immune response evolves over time and/or disease severity. 
+These data are captured in a sequence of cytometry datasets representing points in time, and/or disease stages. 
+TrackSOM will identify the immune cell populations (aka phenotypes) in these data, and how they evolve and vary over the dataset sequence. 
+This includes branching/splitting from common progenitors, appearing and disappearing, changing in absolute or relative phenotypic cell counts, or movements through marker space that signify differentiation and/or functional changes. 
+TrackSOM includes a novel clustering and cluster-tracking algorithm, and a variety of visualisation techniques to enable interpretation of the resultant maps. 
 
 ## Step by step walkthrough
 We are in the process of writing up a step by step walkthrough on how to use TrackSOM.
@@ -38,11 +42,20 @@ TrackSOM will be made available in Bioconductor soon.
 
 Typical install time < 1 minute.
 
+This `TrackSOM` repository captures the software protocol only, to reduce the download size for users. 
+The datasets used in our manuscript are [stored at the Open Science Framework](https://osf.io/8dvzu/) (they are too large for GitHub), and the [corresponding evaluation scripts use in the manuscript are available here](https://github.com/ghar1821/TrackSOM-evaluations). 
+
 ## Manuscript
 
 R scripts to reproduce evaluations and figures in our paper introducing the `TrackSOM` algorithm are available on [`TrackSOM-evaluations`](https://github.com/ghar1821/TrackSOM-evaluations) repository.
 
 Please cite the following preprint if you find TrackSOM useful in your research.
+
+> Givanna H. Putri, Jonathan Chung, Davis N. Edwards, Felix Marsh-Wakefield, Suat Dervish, Irena Koprinska, Nicholas J.C. King, Thomas M. Ashhurst and Mark N. Read. (2021). TrackSOM: mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data. bioRxiv 2021.06.08.447468; doi: https://doi.org/10.1101/2021.06.08.447468
+
+The preprint titled **TrackSOM: mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data** can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1).
+
+The citation in bibtex format:
 ```
 @article {Putri2021.06.08.447468,
 	author = {Putri, Givanna Haryono and Chung, Jonathan and Edwards, Davis N and Marsh-Wakefield, Felix and Dervish, Suat and Koprinska, Irena and King, Nicholas JC and Ashhurst, Thomas Myles and Read, Mark Norman},
@@ -57,8 +70,6 @@ Please cite the following preprint if you find TrackSOM useful in your research.
 	journal = {bioRxiv}
 }
 ```
-
-The preprint titled **TrackSOM: mapping immune response dynamics through sequential clustering of time- and disease-course single-cell cytometry data** can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1).
 
 ## Support and contribute
 We are continuously working to improve TrackSOM and welcome feedbacks.
