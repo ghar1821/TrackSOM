@@ -12,6 +12,8 @@ A step by step R markdown notebook is available in the [`inst/sample_workflow/Tr
 
 A complete R script with the workflow is also available in the [`inst/sample_workflow/TrackSOM_workflow.R`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.R) file.
 
+Approximate run time for the workflow: 1-2 minutes.
+
 Both sample workflows make use of the synthetic dataset reported in our manuscript.
 
 ## System Requirements
