@@ -1,15 +1,18 @@
 # TrackSOM
 
-TrackSOM is a software protocol for creating maps of how the dynamic immune response evolves over time and/or disease severity. 
-These data are captured in a sequence of cytometry datasets representing points in time, and/or disease stages. 
-TrackSOM will identify the immune cell populations (aka phenotypes) in these data, and how they evolve and vary over the dataset sequence. 
-This includes branching/splitting from common progenitors, appearing and disappearing, changing in absolute or relative phenotypic cell counts, or movements through marker space that signify differentiation and/or functional changes. 
-TrackSOM includes a novel clustering and cluster-tracking algorithm, and a variety of visualisation techniques to enable interpretation of the resultant maps. 
+TrackSOM is a software protocol for creating maps of how the dynamic immune response evolves over time and/or disease severity.
+These data are captured in a sequence of cytometry datasets representing points in time, and/or disease stages.
+TrackSOM will identify the immune cell populations (aka phenotypes) in these data, and how they evolve and vary over the dataset sequence.
+This includes branching/splitting from common progenitors, appearing and disappearing, changing in absolute or relative phenotypic cell counts, or movements through marker space that signify differentiation and/or functional changes.
+TrackSOM includes a novel clustering and cluster-tracking algorithm, and a variety of visualisation techniques to enable interpretation of the resultant maps.
 
 ## Step by step walkthrough
-We are in the process of writing up a step by step walkthrough on how to use TrackSOM.
-For now, please check out a sample workflow script uploaded in [`inst/sample_workflow`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.R) directory.
-The sample workflow makes use of the synthetic dataset reported in our manuscript.
+
+A step by step R markdown notebook is available in the [`inst/sample_workflow/TrackSOM_workflow.nb.html`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.nb.html) file.
+
+A complete R script with the workflow is also available in the [`inst/sample_workflow`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.R) directory.
+
+Both sample workflows make use of the synthetic dataset reported in our manuscript.
 
 ## System Requirements
 - Hardware requirements: Standard computer. TrackSOM has been tested on a Macbook with >= 8.0GB RAM.
@@ -42,8 +45,8 @@ TrackSOM will be made available in Bioconductor soon.
 
 Typical install time < 1 minute.
 
-This `TrackSOM` repository captures the software protocol only, to reduce the download size for users. 
-The datasets used in our manuscript are [stored at the Open Science Framework](https://osf.io/8dvzu/) (they are too large for GitHub), and the [corresponding evaluation scripts use in the manuscript are available here](https://github.com/ghar1821/TrackSOM-evaluations). 
+This `TrackSOM` repository captures the software protocol only, to reduce the download size for users.
+The datasets used in our manuscript are [stored at the Open Science Framework](https://osf.io/8dvzu/) (they are too large for GitHub), and the [corresponding evaluation scripts use in the manuscript are available here](https://github.com/ghar1821/TrackSOM-evaluations).
 
 ## Manuscript
 
