@@ -1,6 +1,6 @@
 ---
 title: "TrackSOM workflow"
-output: html_notebook
+output: github_document
 ---
 
 In this tutorial, we outline a step by step instruction on how to use TrackSOM to cluster and track time-series data.
@@ -9,23 +9,17 @@ The dataset is stored under `inst` directory: [link](https://github.com/ghar1821
 
 # Importing TrackSOM package
 
-If you have not installed the TrackSOM package, please run the following chunk of code to install it using the `devtools` R package:
-```{r}
-install.packages("devtools")
-devtools::install_github("ghar1821/TrackSOM")
-```
+If you have not installed the TrackSOM package, please use `devtools` to install the package from the following [TrackSOM github repo](https://github.com/ghar1821/TrackSOM).
+For devtools, the repo parameter will be: `ghar1821/TrackSOM`.
 
 The following code shall import the TrackSOM package:
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(TrackSOM)
 ```
 
-TrackSOM relies on various packages to operate, and unfortunately some of them contain functions that are named the same. 
-We are still in the process of tidying this up, but for now, please do not worry about this as it does not impact its functionality in any way.
-
 # Importing dataset
 
-TrackSOM supports dataset stored as either CSV or FCS files or as `data.table` object (enhanced version of R's native data.frame. See [data.table vignette](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) for more details.).
+TrackSOM supports dataset stored as either CSV or FCS files or as `data.table` object (enhanced version of R's native data.frame. See [data.table vignette](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) for more details).
 The following sections shall show you how to read in those files and pass them to the TrackSOM function.
 
 ## Dataset as CSV files
@@ -87,7 +81,7 @@ You can see it contains a list of *absolute path* of multiple FCS files, each be
 
 ## Dataset as `data.table` object
 
-Sometimes, it is possible to have the dataset stored as the `data.table` object files. 
+Sometimes, it is convenient to have the dataset stored as the `data.table` object files, e.g. when you need to run some code to preprocess your data using R!
 As an example, supposed the synthetic dataset CSV files were already read in as `data.table` object prior to running TrackSOM (say you did some preliminary clean up or filtering).
 What you need to do is organise them in a list such that each element is a `data.table` object for the dataset in a time-point.
 *Important:* the list must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.
@@ -135,7 +129,7 @@ The TrackSOM functions have the following parameters which are pre-filled with d
 * xdim: 10 (default). SOM grid size.
 * ydim: 10 (default). SOM grid size.
 
-The function also accept parameters that are built into [FlowSOM](https://bioconductor.org/packages/release/bioc/html/FlowSOM.html)'s `ReadInput`, `BuildSOM` and `BuildMST` functions.
+The function also accept parameters that are built into [FlowSOM](https://bioconductor.org/packages/release/bioc/html/FlowSOM.html) `ReadInput`, `BuildSOM` and `BuildMST` functions.
 See FlowSOM's vignette for specific parameter information.
 
 Let's run TrackSOM with the following settings:
@@ -160,7 +154,7 @@ tracksom.result <- TrackSOM(inputFiles = data.files.fullpath,
 TrackSOM result is stored in an object. 
 To facilitate the extraction of meta-clusters ID and SOM nodes for each cell, we provide the following functions:
 
-* `ConcatenateClusteringDetails`: assuming your dataset is stored as a `data.table` object, the function attaches the meta-cluster ID and SOM nodes for each cell as separate columns.
+* `ConcatenateClusteringDetails`: assuming your dataset is stored as a `data.table` object, the function attaches the meta-cluster ID and SOM nodes as separate columns.
 * `ExportClusteringDetailsOnly`: this function simply extract the meta-cluster ID and SOM nodes for each cell as a `data.table` object. The cells are ordered based on the ordering of your dataset. 
 
 To use `ConcatenateClusteringDetails`, you need to first read in all your datasets as one giant `data.table`.
@@ -180,7 +174,7 @@ head(dat)
 tail(dat)
 ```
 
-To run `ConcatenateClusteringDetails`, you need to oass the following parameters:
+To run `ConcatenateClusteringDetails`, you need to pass the following parameters:
 
 * `timepoint.col`: which column in your data define the time-point.
 * `timepoints`: what are the time-points (in order). This must be a vector.
@@ -199,7 +193,7 @@ Inspect the content:
 ```{r}
 head(dat.clust)
 ```
-The function attach extra 3 columns:
+The function attaches extra 3 columns:
 
 * `TrackSOM_cluster`: The SOM node of each cell.
 * `TrackSOM_metacluster`: The meta-cluster assignment produced by FlowSOM's meta-clustering.
@@ -216,7 +210,7 @@ TrackSOM offers 2 visualisation mediums:
 
 ## Network plot
 
-To draw a network plot, we need to call the `DrawNetworkPlot` function.
+To draw network plots, we need to call the `DrawNetworkPlot` function.
 Using the clustered and tracked data from previous sections, the following is an example on how to use the function:
 ```{r}
 DrawNetworkPlot(dat = dat.clust,
@@ -225,6 +219,9 @@ DrawNetworkPlot(dat = dat.clust,
                 cluster.col = 'TrackSOM_metacluster_lineage_tracking',
                 marker.cols = c('x', 'y', 'z'))
 ```
+
+The `marker.cols` will determine the *markers* which mean/median expression will be drawn on the network plots.
+There is no need to specify all the markers in the dataset, just the ones that you want the network plots to be coloured on.
 
 The function won't preview any plots, but it will instead store the plots as image files and some extra information (median/mean expression of markers) as CSV files:
 ```{r}
@@ -245,6 +242,9 @@ DrawTimeseriesHeatmap(dat = dat.clust,
                 cluster.col = 'TrackSOM_metacluster_lineage_tracking',
                 marker.cols = c('x', 'y', 'z'))
 ```
+
+The `marker.cols` will determine the *markers* which mean/median expression will be drawn on the network plots.
+There is no need to specify all the markers in the dataset, just the ones that you want the network plots to be coloured on.
 
 The function won't preview any plots, but it will instead store the plots as image files and some extra information (median/mean expression of markers) as CSV files:
 ```{r}
