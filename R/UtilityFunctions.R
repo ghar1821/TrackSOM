@@ -19,6 +19,7 @@
 #' @examples
 #'
 #' library(data.table)
+#' library(TrackSOM)
 #' data_files <- sapply(c(0:4), function(i) {
 #'   system.file("extdata", paste0("synthetic_d", i, ".fcs"), package="TrackSOM")
 #' })
@@ -34,8 +35,8 @@
 #' })
 #' data <- rbindlist(data)
 #' tracksom_res <- ConcatenateClusteringDetails(
-#'   data,
-#'   tracksom_result,
+#'   tracksom.result = tracksom_result,
+#'   dat = data,
 #'   timepoint.col = 'timepoint',
 #'   timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4")
 #' )
@@ -124,7 +125,6 @@ ConcatenateClusteringDetails <- function(tracksom.result,
 #' @import data.table
 #'
 #' @examples
-#' \dontrun{
 #' data_files <- sapply(c(0:4), function(i) {
 #' system.file("extdata", paste0("synthetic_d", i, ".fcs"), package="TrackSOM")
 #' })
@@ -135,7 +135,7 @@ ConcatenateClusteringDetails <- function(tracksom.result,
 #'                             dataFileType = ".fcs"
 #' )
 #' tracksom_res <- ExportClusteringDetailsOnly(tracksom_result)
-#' }
+#' 
 #'
 #' @export
 #'
