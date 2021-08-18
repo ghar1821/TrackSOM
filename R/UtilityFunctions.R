@@ -19,7 +19,6 @@
 #' @examples
 #'
 #' library(data.table)
-#' library(TrackSOM)
 #' data_files <- sapply(c(0:4), function(i) {
 #'   system.file("extdata", paste0("synthetic_d", i, ".fcs"), package="TrackSOM")
 #' })
