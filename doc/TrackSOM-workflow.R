@@ -1,9 +1,3 @@
-## ---- include = FALSE---------------------------------------------------------
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-
 ## ----message=FALSE, warning=FALSE---------------------------------------------
 library(TrackSOM)
 
@@ -32,7 +26,6 @@ data.files.fullpath.fcs <- c(
 print(data.files.fullpath.fcs)
 
 ## -----------------------------------------------------------------------------
-
 library(data.table)
 data.files <- c(
   system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
