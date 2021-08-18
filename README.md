@@ -8,13 +8,10 @@ TrackSOM includes a novel clustering and cluster-tracking algorithm, and a varie
 
 ## Step by step walkthrough
 
-The [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc) folder contains the step by step walkthrough on how to use TrackSOM using the synthetic dataset.
+A sample workflow is available on the [ImmuneDynamics website](https://immunedynamics.io/research/time-series_workflow/TrackSOM-workflow.html).
 
-The instruction is written in Rmd format, and has been built to yield HTML version which can be viewed through web browser.
-It is also available in pure R file.
-All the files are stored in the [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc) folder.
-
-The workflow is also available on the [ImmuneDynamics website](https://immunedynamics.io/research/time-series_workflow/TrackSOM-workflow.html).
+The raw sample workflow files are also available in the [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc).
+They are available in `.Rmd`, `.R`, and `.html` format.
 
 Approximate run time for the workflow: 1-2 minutes.
 
