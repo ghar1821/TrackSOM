@@ -2,24 +2,17 @@
 title: "TrackSOM-workflow"
 output: 
   rmarkdown::html_document:
+    keep_md: true
     toc: true
     toc_float:
       collapsed: false
       smooth_scroll: false
-    keep_md: true
 author: Givanna Putri
 vignette: >
   %\VignetteIndexEntry{TrackSOM-workflow}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
 In this tutorial, we outline a step by step instruction on how to use TrackSOM to cluster and track time-series data.
 For simplicity, we will use the synthetic dataset outlined in our manuscript uploaded to [bioArxiv](https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1).
@@ -115,7 +108,6 @@ What you need to do is organise them in a list such that each element is a `data
 *Important:* the list must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.
 
 ```{r}
-
 library(data.table)
 data.files <- c(
   system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
