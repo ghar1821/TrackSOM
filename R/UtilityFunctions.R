@@ -134,7 +134,7 @@ ConcatenateClusteringDetails <- function(tracksom.result,
 #'                             dataFileType = ".fcs"
 #' )
 #' tracksom_res <- ExportClusteringDetailsOnly(tracksom_result)
-#' 
+#'
 #'
 #' @export
 #'

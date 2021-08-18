@@ -73,8 +73,8 @@
 #' })
 #' data <- rbindlist(data)
 #' tracksom_res <- ConcatenateClusteringDetails(
-#'   data,
-#'   tracksom_result,
+#'   dat = data,
+#'   tracksom.result = tracksom_result,
 #'   timepoint.col = 'timepoint',
 #'   timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4")
 #' )
@@ -365,4 +365,3 @@ DrawTimeseriesHeatmap <- function(dat,
   }
 
 }
-
