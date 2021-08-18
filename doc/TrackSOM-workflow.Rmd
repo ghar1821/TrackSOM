@@ -1,11 +1,23 @@
 ---
-title: "TrackSOM workflow"
-output: github_document
+title: "TrackSOM-workflow"
+output: rmarkdown::html_vignette
+author: Givanna Putri
+vignette: >
+  %\VignetteIndexEntry{TrackSOM-workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 In this tutorial, we outline a step by step instruction on how to use TrackSOM to cluster and track time-series data.
-For simplicity, we will use the synthetic dataset outlined in our manuscript downloadable from [bioArxiv](https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1).
-The dataset is stored under `inst` directory: [link](https://github.com/ghar1821/TrackSOM/tree/master/inst/extdata).
+For simplicity, we will use the synthetic dataset outlined in our manuscript uploaded to [bioArxiv](https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1).
+The dataset files are provided in the `inst` directory: [link](https://github.com/ghar1821/TrackSOM/tree/master/inst/extdata).
 
 # Importing TrackSOM package
 
@@ -33,14 +45,19 @@ These files' location must be stored within a vector which get passed on to the 
 
 *Important:* the vector must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.
 
-First, we start with specifying the CSV files are:
+First, we start with specifying the CSV files are.
+In this example, the dataset files are already stored within the package, so all you need to do is load it up:
 ```{r}
-InputDirectory <- "~/Documents/GitHub/TrackSOM/inst/extdata/"
-data.files <- list.files(InputDirectory, ".csv")
-data.files.fullpath <- sapply(data.files, function(fname) {
-    full.fname <- paste(InputDirectory, fname, sep="/")
-})
+data.files.fullpath <- c(
+  system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d1.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d2.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d3.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d4.csv", package = "TrackSOM")
+)
 ```
+
+*For your dataset, please replace the content of the vector with the **absolute path** for the dataset files!*
 
 Let's inspect the content of `data.files.fullpath`:
 
@@ -62,16 +79,21 @@ To import the dataset stored as FCS files, TrackSOM needs to know where the file
 These files' location must be stored within a vector which get passed on to the TrackSOM function.
 *Important:* the vector must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.
 
-First, we start with specifying the FCS files are:
+First, we start with specifying the FCS files are.
+In this example, the dataset files are already stored within the package, so all you need to do is load it up:
 ```{r}
-InputDirectory <- "~/Documents/GitHub/TrackSOM/inst/extdata/"
-data.files.fcs <- list.files(InputDirectory, ".fcs")
-data.files.fullpath.fcs <- sapply(data.files.fcs, function(fname) {
-    full.fname <- paste(InputDirectory, fname, sep="/")
-})
+data.files.fullpath.fcs <- c(
+  system.file("extdata", "synthetic_d0.fcs", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d1.fcs", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d2.fcs", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d3.fcs", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d4.fcs", package = "TrackSOM")
+)
 ```
 
-Let's inspect the content of `data.files.fullpath`:
+*For your dataset, please replace the content of the vector with the **absolute path** for the dataset files!*
+
+Let's inspect the content of `data.files.fullpath.fcs`:
 
 ```{r}
 print(data.files.fullpath.fcs)
@@ -87,10 +109,16 @@ What you need to do is organise them in a list such that each element is a `data
 *Important:* the list must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.
 
 ```{r}
+
 library(data.table)
-InputDirectory <- "~/Documents/GitHub/TrackSOM/inst/extdata/"
-data.files <- list.files(InputDirectory, ".csv")
-dat <- lapply(data.files, function(f) fread(paste0(InputDirectory, f)))
+data.files <- c(
+  system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d1.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d2.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d3.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d4.csv", package = "TrackSOM")
+)
+dat <- lapply(data.files, function(f) fread(f))
 ```
 
 Let's do a quick preview of the data:

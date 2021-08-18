@@ -8,9 +8,11 @@ TrackSOM includes a novel clustering and cluster-tracking algorithm, and a varie
 
 ## Step by step walkthrough
 
-A step by step R markdown notebook is available in the [`inst/sample_workflow/TrackSOM_workflow.md`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.md) file.
+The [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc) folder contains the step by step walkthrough on how to use TrackSOM using the synthetic dataset.
 
-A complete R script with the workflow is also available in the [`inst/sample_workflow/TrackSOM_workflow.R`](https://github.com/ghar1821/TrackSOM/blob/master/inst/sample_workflow/TrackSOM_workflow.R) file.
+The instruction is written in Rmd format, and has been built to yield HTML version which can be viewed through web browser.
+It is also available in pure R file.
+All the files are stored in the [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc) folder.
 
 Approximate run time for the workflow: 1-2 minutes.
 

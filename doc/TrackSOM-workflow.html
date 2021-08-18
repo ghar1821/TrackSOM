@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Givanna Putri" />
+
+
+<title>TrackSOM-workflow</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">TrackSOM-workflow</h1>
+<h4 class="author">Givanna Putri</h4>
+
+
+
+<p>In this tutorial, we outline a step by step instruction on how to use TrackSOM to cluster and track time-series data. For simplicity, we will use the synthetic dataset outlined in our manuscript uploaded to <a href="https://www.biorxiv.org/content/10.1101/2021.06.08.447468v1">bioArxiv</a>. The dataset files are provided in the <code>inst</code> directory: <a href="https://github.com/ghar1821/TrackSOM/tree/master/inst/extdata">link</a>.</p>
+<div id="importing-tracksom-package" class="section level1">
+<h1>Importing TrackSOM package</h1>
+<p>If you have not installed the TrackSOM package, please use <code>devtools</code> to install the package from the following <a href="https://github.com/ghar1821/TrackSOM">TrackSOM github repo</a>. For devtools, the repo parameter will be: <code>ghar1821/TrackSOM</code>.</p>
+<p>The following code shall import the TrackSOM package:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TrackSOM)</span></code></pre></div>
+</div>
+<div id="importing-dataset" class="section level1">
+<h1>Importing dataset</h1>
+<p>TrackSOM supports dataset stored as either CSV or FCS files or as <code>data.table</code> object (enhanced version of R’s native data.frame. See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">data.table vignette</a> for more details). The following sections shall show you how to read in those files and pass them to the TrackSOM function.</p>
+<div id="dataset-as-csv-files" class="section level2">
+<h2>Dataset as CSV files</h2>
+<p>Here, we assume that each file contains data belonging to one time-point. Hence you should have more than 1 CSV files. If this is not the case, please reformat your data files.</p>
+<p>To import the dataset stored as CSV files, TrackSOM needs to know where the files are stored. These files’ location must be stored within a vector which get passed on to the TrackSOM function.</p>
+<p><em>Important:</em> the vector must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.</p>
+<p>First, we start with specifying the CSV files are. In this example, the dataset files are already stored within the package, so all you need to do is load it up:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data.files.fullpath <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d0.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d1.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d2.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d3.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d4.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><em>For your dataset, please replace the content of the vector with the <strong>absolute path</strong> for the dataset files!</em></p>
+<p>Let’s inspect the content of <code>data.files.fullpath</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data.files.fullpath)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d0.csv&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d1.csv&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d2.csv&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d3.csv&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d4.csv&quot;</span></span></code></pre></div>
+<p>You can see it contains a list of <em>absolute path</em> of multiple CSV files, each belonging to a time-point.</p>
+</div>
+<div id="dataset-as-fcs-files" class="section level2">
+<h2>Dataset as FCS files</h2>
+<p>The procedure is very similar to reading CSV files above, except we’re going to be storing FCS files’ path rather than CSV.</p>
+<p>Again, here, we assume that each file contains data belonging to one time-point. Hence you should have more than 1 FCS files. If this is not the case, please reformat your data files.</p>
+<p>To import the dataset stored as FCS files, TrackSOM needs to know where the files are stored. These files’ location must be stored within a vector which get passed on to the TrackSOM function. <em>Important:</em> the vector must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.</p>
+<p>First, we start with specifying the FCS files are. In this example, the dataset files are already stored within the package, so all you need to do is load it up:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data.files.fullpath.fcs <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d0.fcs&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d1.fcs&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d2.fcs&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d3.fcs&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d4.fcs&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><em>For your dataset, please replace the content of the vector with the <strong>absolute path</strong> for the dataset files!</em></p>
+<p>Let’s inspect the content of <code>data.files.fullpath.fcs</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data.files.fullpath.fcs)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d0.fcs&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d1.fcs&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d2.fcs&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d3.fcs&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] &quot;/private/var/folders/j2/7y5xp8610kgf0jbx202by2200000gn/T/Rtmp02EcPM/temp_libpath1d1d1202aca4/TrackSOM/extdata/synthetic_d4.fcs&quot;</span></span></code></pre></div>
+<p>You can see it contains a list of <em>absolute path</em> of multiple FCS files, each belonging to a time-point.</p>
+</div>
+<div id="dataset-as-data.table-object" class="section level2">
+<h2>Dataset as <code>data.table</code> object</h2>
+<p>Sometimes, it is convenient to have the dataset stored as the <code>data.table</code> object files, e.g. when you need to run some code to preprocess your data using R! As an example, supposed the synthetic dataset CSV files were already read in as <code>data.table</code> object prior to running TrackSOM (say you did some preliminary clean up or filtering). What you need to do is organise them in a list such that each element is a <code>data.table</code> object for the dataset in a time-point. <em>Important:</em> the list must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>data.files <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d0.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d1.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d2.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d3.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;synthetic_d4.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TrackSOM&quot;</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">lapply</span>(data.files, <span class="cf">function</span>(f) <span class="fu">fread</span>(f))</span></code></pre></div>
+<p>Let’s do a quick preview of the data:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               x         y         z timepoint</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1:  9.598217 11.728198 11.382064      Mock</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2:  8.937549  8.653750 11.107314      Mock</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3:  9.632932  9.657278  9.115804      Mock</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:  9.770393 12.478038 11.451082      Mock</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: 30.426699 31.290929 28.901204      Mock</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                        </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7096: 10.533174  9.462175  9.867354      Mock</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7097: 10.544833 10.426697  9.571881      Mock</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7098: 10.140938  8.727880 10.247086      Mock</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7099: 30.967131 30.261241 30.469085      Mock</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7100: 10.063984 10.289172 10.382876      Mock</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               x         y         z timepoint</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: 33.850857 30.653891 29.257884     SYN-1</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: 10.429818 13.880273 10.878985     SYN-1</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: 10.009247 10.327127 10.994237     SYN-1</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:  9.751578  8.555277  8.914872     SYN-1</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: 10.456213 10.972776 10.011441     SYN-1</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                        </span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7096:  9.237145 10.203747 12.475563     SYN-1</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7097: 12.957000  9.147637  8.807634     SYN-1</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7098: 12.297580 11.034141  9.828642     SYN-1</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7099:  9.393480 11.766797 11.137156     SYN-1</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7100: 11.684874  8.864774 11.771160     SYN-1</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               x         y         z timepoint</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: 10.107081 10.371958  8.862552     SYN-2</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: 12.271113 28.710774 13.945666     SYN-2</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: 10.248482 10.249500  7.918076     SYN-2</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:  9.341533 10.228882 12.209994     SYN-2</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: 10.116334  9.805188  9.742291     SYN-2</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                        </span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7196: 10.682697 13.643521 10.637965     SYN-2</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7197: 27.598520 30.275747 29.691414     SYN-2</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7198: 10.728449 10.020652  9.517445     SYN-2</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7199: 10.167862  9.754739  9.416342     SYN-2</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7200:  9.554067 11.296156 12.535182     SYN-2</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               x         y         z timepoint</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: 13.864150  8.884197  8.742413     SYN-3</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: 25.420014 40.961726 26.453685     SYN-3</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: 23.968729 31.313815 31.314857     SYN-3</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: 10.538730  9.855319  9.061674     SYN-3</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5:  8.814686 12.068781 10.729973     SYN-3</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                        </span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7196: 10.358157  8.856995 10.440222     SYN-3</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7197: 10.093926 11.400187 10.429873     SYN-3</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7198: 14.720125 10.599644  9.599185     SYN-3</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7199: 24.545254 29.734070 29.035897     SYN-3</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7200:  9.967504 14.351193 11.619231     SYN-3</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[5]]</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               x         y         z timepoint</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: 10.088854 10.171541 10.122280     SYN-4</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: 14.776449 10.189092 10.621575     SYN-4</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3:  9.652116 12.567544  9.282672     SYN-4</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: 10.436809 10.725664 10.016877     SYN-4</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: 10.235657 10.966951  9.371363     SYN-4</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                        </span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7096: 21.234807 30.522073 30.590687     SYN-4</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7097:  9.703690  8.319128  9.579323     SYN-4</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7098: 17.654003 30.891041 29.390515     SYN-4</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7099:  9.089960  9.744563 12.483508     SYN-4</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7100: 36.910728 29.551236 29.926378     SYN-4</span></span></code></pre></div>
+<p>As you can see, there are 5 elements in the list, each containing a dataset belonging to a time-point.</p>
+</div>
+</div>
+<div id="running-tracksom" class="section level1">
+<h1>Running TrackSOM</h1>
+<p>Depending on how your dataset is stored, the parameter <code>inputFiles</code> is either a vector of absolute path of your CSV or FCS files or a list of <code>data.table</code> object. Additionally, you need to specify the type as the parameter <code>dataFileType</code>. It can be either <code>.csv</code>, <code>.fcs</code>, or <code>data.frame</code> depending on how your dataset is stored.</p>
+<div id="other-parameters" class="section level2">
+<h2>Other parameters</h2>
+<p><strong><em>Note:</em></strong> examples here assume datasets are stored as CSV files.</p>
+<p>The TrackSOM function have various parameters. Of them, only <code>inputFiles</code> and <code>colsToUse</code> have no default values. The <code>inputFiles</code> parameter has been explained in the previous section.</p>
+<p>The <code>colsToUse</code> parameter specify the columns in your dataset to be used for clustering and tracking. This must be a vector. For the synthetic dataset, the columns are denoted as <code>x</code>, <code>y</code>, and <code>z</code>. For cytometry data, this should be a vector of markers.</p>
+<p>The TrackSOM functions have the following parameters which are pre-filled with default values:</p>
+<ul>
+<li>tracking: TRUE (default) or FALSE, whether to perform tracking.</li>
+<li>noMerge: TRUE or FALSE (default), whether to allow merging of meta-clusters (FALSE) or not (TRUE). If noMerge is set to TRUE, meta-clusters are only allowed to split, but not merge.</li>
+<li>maxMeta: NULL (default) or round number. Maximum number of meta clusters for all time point. Only used for Autonomous Adaptive operation.</li>
+<li>nClus: NULL (default) or numeric or a vector of numbers. If single number, TrackSOM will run Prescribed Invariant operation. Otherwise, it will run Prescribed Variant operation.</li>
+<li>seed: 42 (default). Random seed number.</li>
+<li>xdim: 10 (default). SOM grid size.</li>
+<li>ydim: 10 (default). SOM grid size.</li>
+</ul>
+<p>The function also accept parameters that are built into <a href="https://bioconductor.org/packages/release/bioc/html/FlowSOM.html">FlowSOM</a> <code>ReadInput</code>, <code>BuildSOM</code> and <code>BuildMST</code> functions. See FlowSOM’s vignette for specific parameter information.</p>
+<p>Let’s run TrackSOM with the following settings:</p>
+<ul>
+<li>No merging of meta-clusters allowed (<code>noMerge = TRUE</code>)</li>
+<li>Enable tracking (<code>tracking = TRUE</code>)</li>
+<li>Prescribed Variant producing 3, 3, 9, 7, 15 meta-clusters for each time-point.</li>
+</ul>
+<p>The remaining parameters will be set to the default values.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tracksom.result <span class="ot">&lt;-</span> <span class="fu">TrackSOM</span>(<span class="at">inputFiles =</span> data.files.fullpath,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">colsToUse =</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>, <span class="st">&#39;z&#39;</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">tracking =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">noMerge =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">nClus =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">15</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">dataFileType =</span> <span class="st">&quot;.csv&quot;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Building SOM</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mapping data to SOM</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Building MST</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Extracting SOM nodes for each time point</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Running meta clustering</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Meta clustering time point 1 with 82 SOM nodes</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Meta clustering time point 2 with 93 SOM nodes</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Meta clustering time point 3 with 90 SOM nodes</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Meta clustering time point 4 with 95 SOM nodes</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Meta clustering time point 5 with 95 SOM nodes</span></span></code></pre></div>
+</div>
+</div>
+<div id="extracting-meta-clusters-id-and-som-nodes" class="section level1">
+<h1>Extracting meta-clusters ID and SOM nodes</h1>
+<p>TrackSOM result is stored in an object. To facilitate the extraction of meta-clusters ID and SOM nodes for each cell, we provide the following functions:</p>
+<ul>
+<li><code>ConcatenateClusteringDetails</code>: assuming your dataset is stored as a <code>data.table</code> object, the function attaches the meta-cluster ID and SOM nodes as separate columns.</li>
+<li><code>ExportClusteringDetailsOnly</code>: this function simply extract the meta-cluster ID and SOM nodes for each cell as a <code>data.table</code> object. The cells are ordered based on the ordering of your dataset.</li>
+</ul>
+<p>To use <code>ConcatenateClusteringDetails</code>, you need to first read in all your datasets as one giant <code>data.table</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>InputDirectory <span class="ot">&lt;-</span> <span class="st">&quot;~/Documents/GitHub/TrackSOM/inst/extdata/&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>data.files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(InputDirectory, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">lapply</span>(data.files, <span class="cf">function</span>(f) <span class="fu">fread</span>(<span class="fu">paste0</span>(InputDirectory, f)))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(dat)</span></code></pre></div>
+<p>Double check the data is read in properly:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            x         y         z timepoint</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  9.598217 11.728198 11.382064      Mock</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  8.937549  8.653750 11.107314      Mock</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  9.632932  9.657278  9.115804      Mock</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  9.770393 12.478038 11.451082      Mock</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 30.426699 31.290929 28.901204      Mock</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6: 30.789497 30.069909 30.767145      Mock</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(dat)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            x         y         z timepoint</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  7.954781  9.241713  9.429919     SYN-4</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 21.234807 30.522073 30.590687     SYN-4</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  9.703690  8.319128  9.579323     SYN-4</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 17.654003 30.891041 29.390515     SYN-4</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:  9.089960  9.744563 12.483508     SYN-4</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6: 36.910728 29.551236 29.926378     SYN-4</span></span></code></pre></div>
+<p>To run <code>ConcatenateClusteringDetails</code>, you need to pass the following parameters:</p>
+<ul>
+<li><code>timepoint.col</code>: which column in your data define the time-point.</li>
+<li><code>timepoints</code>: what are the time-points (in order). This must be a vector.</li>
+</ul>
+<p>Now let’s attach the meta-cluster ID and the SOM nodes:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dat.clust <span class="ot">&lt;-</span> <span class="fu">ConcatenateClusteringDetails</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tracksom.result =</span> tracksom.result,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">dat =</span> dat,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">timepoint.col =</span> <span class="st">&quot;timepoint&quot;</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">timepoints =</span> <span class="fu">c</span>(<span class="st">&#39;Mock&#39;</span>, <span class="st">&#39;SYN-1&#39;</span>, <span class="st">&#39;SYN-2&#39;</span>, <span class="st">&#39;SYN-3&#39;</span>, <span class="st">&#39;SYN-4&#39;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<p>Inspect the content:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat.clust)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            x         y         z timepoint TrackSOM_cluster</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:  9.598217 11.728198 11.382064      Mock               62</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:  8.937549  8.653750 11.107314      Mock               53</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:  9.632932  9.657278  9.115804      Mock               86</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:  9.770393 12.478038 11.451082      Mock               61</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 30.426699 31.290929 28.901204      Mock               16</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6: 30.789497 30.069909 30.767145      Mock                6</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    TrackSOM_metacluster TrackSOM_metacluster_lineage_tracking</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:                    2                                     B</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:                    2                                     B</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:                    2                                     B</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:                    2                                     B</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:                    1                                     A</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6:                    1                                     A</span></span></code></pre></div>
+<p>The function attaches extra 3 columns:</p>
+<ul>
+<li><code>TrackSOM_cluster</code>: The SOM node of each cell.</li>
+<li><code>TrackSOM_metacluster</code>: The meta-cluster assignment produced by FlowSOM’s meta-clustering.</li>
+<li><code>TrackSOM_metacluster_lineage_tracking</code>: The tracking of meta-clusters’ evolution produced by TrackSOM. <strong>This gives you the changes undergone by the meta-clusters over time</strong>.</li>
+</ul>
+<p>The function gives back a <code>data.table</code> object which you can export as CSV file using <code>data.table</code>’s <code>fwrite</code> function.</p>
+</div>
+<div id="visualisations" class="section level1">
+<h1>Visualisations</h1>
+<p>TrackSOM offers 2 visualisation mediums:</p>
+<ol style="list-style-type: decimal">
+<li>Network plot.</li>
+<li>Timeseries heatmap.</li>
+</ol>
+<div id="network-plot" class="section level2">
+<h2>Network plot</h2>
+<p>To draw network plots, we need to call the <code>DrawNetworkPlot</code> function. Using the clustered and tracked data from previous sections, the following is an example on how to use the function:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DrawNetworkPlot</span>(<span class="at">dat =</span> dat.clust,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">timepoint.col =</span> <span class="st">&quot;timepoint&quot;</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">timepoints =</span> <span class="fu">c</span>(<span class="st">&#39;Mock&#39;</span>, <span class="st">&#39;SYN-1&#39;</span>, <span class="st">&#39;SYN-2&#39;</span>, <span class="st">&#39;SYN-3&#39;</span>, <span class="st">&#39;SYN-4&#39;</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">cluster.col =</span> <span class="st">&#39;TrackSOM_metacluster_lineage_tracking&#39;</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">marker.cols =</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>, <span class="st">&#39;z&#39;</span>))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Calculating edges</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computing node details</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Calculating marker&#39;s average per node</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Saving node and edge details</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Start drawing plots</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Existing variables `x`, `y` overwritten by layout variables</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing plots coloured by time point</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing plots coloured by origin</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing plots coloured by x</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing plots coloured by y</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing plots coloured by z</span></span></code></pre></div>
+<p>The <code>marker.cols</code> will determine the <em>markers</em> which mean/median expression will be drawn on the network plots. There is no need to specify all the markers in the dataset, just the ones that you want the network plots to be coloured on.</p>
+<p>The function won’t preview any plots, but it will instead store the plots as image files and some extra information (median/mean expression of markers) as CSV files:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;network_colBy_origin.pdf&quot;            </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;network_colBy_timepoints.pdf&quot;        </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;network_colBy_x.pdf&quot;                 </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;network_colBy_y.pdf&quot;                 </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;network_colBy_z.pdf&quot;                 </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;network_plot_edge_details.csv&quot;       </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;network_plot_node_details.csv&quot;       </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;Timeseries_heatmap_by_x.pdf&quot;         </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;Timeseries_heatmap_by_y.pdf&quot;         </span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;Timeseries_heatmap_by_z.pdf&quot;         </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;timeseries_heatmap_edges_details.csv&quot;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [12] &quot;timeseries_heatmap_node_details.csv&quot; </span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;TrackSOM-workflow.R&quot;                 </span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [14] &quot;TrackSOM-workflow.Rmd&quot;</span></span></code></pre></div>
+<p>In this example, the plots are saved as PDF files. This can be changed, e.g. to save the plots as PNG files, by specifying the desired file format as the <code>file.format</code> parameter.</p>
+</div>
+<div id="timeseries-heatmap" class="section level2">
+<h2>Timeseries heatmap</h2>
+<p>To draw a timeseries heatmap, we need to call the <code>DrawTimeseriesHeatmap</code> function. Using the clustered and tracked data from previous sections, the following is an example on how to use the function:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DrawTimeseriesHeatmap</span>(<span class="at">dat =</span> dat.clust,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">timepoint.col =</span> <span class="st">&quot;timepoint&quot;</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">timepoints =</span> <span class="fu">c</span>(<span class="st">&#39;Mock&#39;</span>, <span class="st">&#39;SYN-1&#39;</span>, <span class="st">&#39;SYN-2&#39;</span>, <span class="st">&#39;SYN-3&#39;</span>, <span class="st">&#39;SYN-4&#39;</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">cluster.col =</span> <span class="st">&#39;TrackSOM_metacluster_lineage_tracking&#39;</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">marker.cols =</span> <span class="fu">c</span>(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>, <span class="st">&#39;z&#39;</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computing node details</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computing edge details</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Saving node and edge details</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing timeseries heatmap coloured by x</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing timeseries heatmap coloured by y</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Drawing timeseries heatmap coloured by z</span></span></code></pre></div>
+<p>The <code>marker.cols</code> will determine the <em>markers</em> which mean/median expression will be drawn on the network plots. There is no need to specify all the markers in the dataset, just the ones that you want the network plots to be coloured on.</p>
+<p>The function won’t preview any plots, but it will instead store the plots as image files and some extra information (median/mean expression of markers) as CSV files:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;network_colBy_origin.pdf&quot;            </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;network_colBy_timepoints.pdf&quot;        </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;network_colBy_x.pdf&quot;                 </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;network_colBy_y.pdf&quot;                 </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;network_colBy_z.pdf&quot;                 </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;network_plot_edge_details.csv&quot;       </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;network_plot_node_details.csv&quot;       </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;Timeseries_heatmap_by_x.pdf&quot;         </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;Timeseries_heatmap_by_y.pdf&quot;         </span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;Timeseries_heatmap_by_z.pdf&quot;         </span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;timeseries_heatmap_edges_details.csv&quot;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [12] &quot;timeseries_heatmap_node_details.csv&quot; </span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;TrackSOM-workflow.R&quot;                 </span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [14] &quot;TrackSOM-workflow.Rmd&quot;</span></span></code></pre></div>
+<p>In this example, the plots are saved as PDF files. This can be changed, e.g. to save the plots as PNG files, by specifying the desired file format as the <code>file.format</code> parameter.</p>
+</div>
+</div>
+<div id="concluding-remarks" class="section level1">
+<h1>Concluding remarks</h1>
+<p>That is pretty much it folks! We’re actively updating TrackSOM and welcome feedbacks!</p>
+<p>Thank you for your interest!</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
