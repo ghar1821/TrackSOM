@@ -1,6 +1,12 @@
 ---
 title: "TrackSOM-workflow"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    keep_md: true
 author: Givanna Putri
 vignette: >
   %\VignetteIndexEntry{TrackSOM-workflow}
@@ -188,9 +194,14 @@ To facilitate the extraction of meta-clusters ID and SOM nodes for each cell, we
 To use `ConcatenateClusteringDetails`, you need to first read in all your datasets as one giant `data.table`.
 ```{r}
 library(data.table)
-InputDirectory <- "~/Documents/GitHub/TrackSOM/inst/extdata/"
-data.files <- list.files(InputDirectory, ".csv")
-dat <- lapply(data.files, function(f) fread(paste0(InputDirectory, f)))
+data.files <- c(
+  system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d1.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d2.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d3.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d4.csv", package = "TrackSOM")
+)
+dat <- lapply(data.files, function(f) fread(f))
 dat <- rbindlist(dat)
 ```
 

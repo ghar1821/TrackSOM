@@ -57,9 +57,14 @@ tracksom.result <- TrackSOM(inputFiles = data.files.fullpath,
 
 ## -----------------------------------------------------------------------------
 library(data.table)
-InputDirectory <- "~/Documents/GitHub/TrackSOM/inst/extdata/"
-data.files <- list.files(InputDirectory, ".csv")
-dat <- lapply(data.files, function(f) fread(paste0(InputDirectory, f)))
+data.files <- c(
+  system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d1.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d2.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d3.csv", package = "TrackSOM"),
+  system.file("extdata", "synthetic_d4.csv", package = "TrackSOM")
+)
+dat <- lapply(data.files, function(f) fread(f))
 dat <- rbindlist(dat)
 
 ## -----------------------------------------------------------------------------

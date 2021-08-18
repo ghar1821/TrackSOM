@@ -2,5 +2,5 @@
 .DS_Store
 .Rproj.user
 .Rhistory
-Meta/
-.Rproj
+/Meta/
+*.Rproj
