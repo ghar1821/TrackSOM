@@ -1,5 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-inst/sample_workflow
 ^doc$
 ^Meta$
+.travis.yml
