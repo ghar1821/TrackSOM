@@ -14,6 +14,8 @@ The instruction is written in Rmd format, and has been built to yield HTML versi
 It is also available in pure R file.
 All the files are stored in the [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc) folder.
 
+The workflow is also available on the [ImmuneDynamics website](https://immunedynamics.io/research/time-series_workflow/TrackSOM-workflow.html).
+
 Approximate run time for the workflow: 1-2 minutes.
 
 Both sample workflows make use of the synthetic dataset reported in our manuscript.
