@@ -17,7 +17,6 @@ Data.table containing the meta cluster, cluster, and tracking ids for
 Given a TrackSOM object export the clustering result as data.table.
 }
 \examples{
-\dontrun{
 data_files <- sapply(c(0:4), function(i) {
 system.file("extdata", paste0("synthetic_d", i, ".fcs"), package="TrackSOM")
 })
@@ -28,6 +27,6 @@ tracksom_result <- TrackSOM(inputFiles = data_files,
                             dataFileType = ".fcs"
 )
 tracksom_res <- ExportClusteringDetailsOnly(tracksom_result)
-}
+
 
 }

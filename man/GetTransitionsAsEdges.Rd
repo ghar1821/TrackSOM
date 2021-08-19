@@ -38,14 +38,14 @@ data <- lapply(c(0:4), function(i) {
 })
 data <- rbindlist(data)
 tracksom_res <- ConcatenateClusteringDetails(
-  data,
-  tracksom_result,
+  dat = data,
+  tracksom.result = tracksom_result,
   timepoint.col = 'timepoint',
   timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4")
 )
-GetTransitionsAsEdges(tracksom_res,
-                      'timepoint',
-                      c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4"),
-                      "TrackSOM_metacluster_lineage_tracking")
+GetTransitionsAsEdges(dat = tracksom_res,
+                      timepoint_col = 'timepoint',
+                      timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4"),
+                      cluster_col = "TrackSOM_metacluster_lineage_tracking")
 
 }

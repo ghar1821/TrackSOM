@@ -41,8 +41,8 @@ data <- lapply(c(0:4), function(i) {
 })
 data <- rbindlist(data)
 tracksom_res <- ConcatenateClusteringDetails(
-  data,
-  tracksom_result,
+  tracksom.result = tracksom_result,
+  dat = data,
   timepoint.col = 'timepoint',
   timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4")
 )

@@ -59,10 +59,10 @@ get_idx_pipe <- function(cl) {
 #'   timepoint.col = 'timepoint',
 #'   timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4")
 #' )
-#' GetTransitionsAsEdges(tracksom_res,
-#'                       'timepoint',
-#'                       c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4"),
-#'                       "TrackSOM_metacluster_lineage_tracking")
+#' GetTransitionsAsEdges(dat = tracksom_res,
+#'                       timepoint_col = 'timepoint',
+#'                       timepoints = c("Mock", "SYN-1", "SYN-2", "SYN-3", "SYN-4"),
+#'                       cluster_col = "TrackSOM_metacluster_lineage_tracking")
 #'
 #' @export
 #'
