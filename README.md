@@ -85,3 +85,13 @@ R scripts to reproduce evaluations and figures in the paper are available on [`T
 
 ## License
 TrackSOM is released under the GPL-3.0 lincense, included [here](LICENSE).
+
+
+## Code of Conduct
+  
+Please note that the TrackSOM project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
+
+
+
+
