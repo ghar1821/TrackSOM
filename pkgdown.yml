@@ -1,0 +1,10 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  TrackSOM-workflow: TrackSOM-workflow.html
+last_built: 2023-12-06T00:36Z
+urls:
+  reference: https://ghar1821.github.io/TrackSOM/reference
+  article: https://ghar1821.github.io/TrackSOM/articles
+
