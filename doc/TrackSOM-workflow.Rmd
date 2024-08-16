@@ -23,8 +23,8 @@ The dataset files are provided in the `inst` directory: [link](https://github.co
 If you have not installed the TrackSOM package, please use `devtools` to install the package from the following [TrackSOM github repo](https://github.com/ghar1821/TrackSOM).
 For devtools, the repo parameter will be: `ghar1821/TrackSOM`.
 
-The following code shall import the TrackSOM package:
 ```{r message=FALSE, warning=FALSE}
+library(data.table)
 library(TrackSOM)
 ```
 
@@ -46,6 +46,7 @@ These files' location must be stored within a vector which get passed on to the 
 
 First, we start with specifying the CSV files are.
 In this example, the dataset files are already stored within the package, so all you need to do is load it up:
+
 ```{r}
 data.files.fullpath <- c(
   system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
@@ -100,37 +101,55 @@ print(data.files.fullpath.fcs)
 
 You can see it contains a list of *absolute path* of multiple FCS files, each belonging to a time-point.
 
-## Dataset as `data.table` object
+## Dataset as a list of `data.table` objects
 
-Sometimes, it is convenient to have the dataset stored as the `data.table` object files, e.g. when you need to run some code to preprocess your data using R!
+Sometimes, it is convenient to have the dataset stored as the `data.table` object files, e.g. when you need to run some code to preprocess your data using R.
 As an example, supposed the synthetic dataset CSV files were already read in as `data.table` object prior to running TrackSOM (say you did some preliminary clean up or filtering).
+
 What you need to do is organise them in a list such that each element is a `data.table` object for the dataset in a time-point.
 *Important:* the list must be organised such as the first element is the data for the very first time-point, the 2nd element for the 2nd time-point, and so on.
 
 ```{r}
-library(data.table)
-data.files <- c(
-  system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
-  system.file("extdata", "synthetic_d1.csv", package = "TrackSOM"),
-  system.file("extdata", "synthetic_d2.csv", package = "TrackSOM"),
-  system.file("extdata", "synthetic_d3.csv", package = "TrackSOM"),
-  system.file("extdata", "synthetic_d4.csv", package = "TrackSOM")
-)
-dat <- lapply(data.files, function(f) fread(f))
-```
-
-Let's do a quick preview of the data:
-```{r}
+dat <- lapply(data.files.fullpath, function(f) fread(f))
 dat
 ```
 
 As you can see, there are 5 elements in the list, each containing a dataset belonging to a time-point.
 
+### Dataset as a `data.table` object
+
+You can also represent your dataset as just one `data.table` object containing a column
+denoting which time-point each cell comes from.
+
+```{r}
+timepoints <- seq(0, 4)
+
+dat <- lapply(seq(length(data.files.fullpath)), function(data_file_i) {
+    dt <- fread(data.files.fullpath[[data_file_i]])
+    dt[['timepoint']] <- timepoints[data_file_i]
+    return(dt)
+})
+
+dat <- rbindlist(dat)
+
+head(dat)
+tail(dat)
+```
+
+Here, the timepoint column denotes which timepoint the cell comes from.
+
 # Running TrackSOM
 
-Depending on how your dataset is stored, the parameter `inputFiles` is either a vector of absolute path of your CSV or FCS files or a list of `data.table` object.
-Additionally, you need to specify the type as the parameter `dataFileType`. 
-It can be either `.csv`, `.fcs`, or `data.frame` depending on how your dataset is stored.
+Depending on how your dataset is stored, the parameter `inputFiles` is either:
+
+1. a vector of absolute path of your CSV or FCS files
+2. a list of `data.table` object.
+3. A `data.table` object
+
+If `inputFiles` is option 3 above, make sure you specify the following parameters:
+
+1. `timepointCol`: the name of the column denoting the timepoint of your cells.
+2. `timepoints`: a vector of timepoints in order. Make sure these values exist in `timepointCol` column.
 
 ## Other parameters
 
@@ -165,6 +184,7 @@ Let's run TrackSOM with the following settings:
 * Prescribed Variant producing 3, 3, 9, 7, 15 meta-clusters for each time-point.
 
 The remaining parameters will be set to the default values.
+
 ```{r}
 tracksom.result <- TrackSOM(inputFiles = data.files.fullpath,
                             colsToUse = c('x', 'y', 'z'),
@@ -185,7 +205,6 @@ To facilitate the extraction of meta-clusters ID and SOM nodes for each cell, we
 
 To use `ConcatenateClusteringDetails`, you need to first read in all your datasets as one giant `data.table`.
 ```{r}
-library(data.table)
 data.files <- c(
   system.file("extdata", "synthetic_d0.csv", package = "TrackSOM"),
   system.file("extdata", "synthetic_d1.csv", package = "TrackSOM"),
