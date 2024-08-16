@@ -5,54 +5,46 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="TrackSOM">
 <title>TrackSOM-workflow • TrackSOM</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="TrackSOM-workflow">
-<meta property="og:description" content="TrackSOM">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="TrackSOM-workflow">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">TrackSOM</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/TrackSOM-workflow.html">TrackSOM-workflow</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/TrackSOM-workflow.html">TrackSOM-workflow</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+      </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -61,12 +53,13 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>TrackSOM-workflow</h1>
+
+      <h1>TrackSOM-workflow</h1>
                         <h4 data-toc-skip class="author">Givanna
 Putri</h4>
             
       
-      
+
       <div class="d-none name"><code>TrackSOM-workflow.Rmd</code></div>
     </div>
 
@@ -192,12 +185,13 @@ first time-point, the 2nd element for the 2nd time-point, and so on.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d3.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d4.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s do a quick preview of the data:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span></span></code></pre></div>
 <pre><code><span><span class="co">## [[1]]</span></span>
 <span><span class="co">##               x         y         z timepoint</span></span>
+<span><span class="co">##           &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">##    1:  9.598217 11.728198 11.382064      Mock</span></span>
 <span><span class="co">##    2:  8.937549  8.653750 11.107314      Mock</span></span>
 <span><span class="co">##    3:  9.632932  9.657278  9.115804      Mock</span></span>
@@ -212,6 +206,7 @@ first time-point, the 2nd element for the 2nd time-point, and so on.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## [[2]]</span></span>
 <span><span class="co">##               x         y         z timepoint</span></span>
+<span><span class="co">##           &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">##    1: 33.850857 30.653891 29.257884     SYN-1</span></span>
 <span><span class="co">##    2: 10.429818 13.880273 10.878985     SYN-1</span></span>
 <span><span class="co">##    3: 10.009247 10.327127 10.994237     SYN-1</span></span>
@@ -226,6 +221,7 @@ first time-point, the 2nd element for the 2nd time-point, and so on.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## [[3]]</span></span>
 <span><span class="co">##               x         y         z timepoint</span></span>
+<span><span class="co">##           &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">##    1: 10.107081 10.371958  8.862552     SYN-2</span></span>
 <span><span class="co">##    2: 12.271113 28.710774 13.945666     SYN-2</span></span>
 <span><span class="co">##    3: 10.248482 10.249500  7.918076     SYN-2</span></span>
@@ -240,6 +236,7 @@ first time-point, the 2nd element for the 2nd time-point, and so on.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## [[4]]</span></span>
 <span><span class="co">##               x         y         z timepoint</span></span>
+<span><span class="co">##           &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">##    1: 13.864150  8.884197  8.742413     SYN-3</span></span>
 <span><span class="co">##    2: 25.420014 40.961726 26.453685     SYN-3</span></span>
 <span><span class="co">##    3: 23.968729 31.313815 31.314857     SYN-3</span></span>
@@ -254,6 +251,7 @@ first time-point, the 2nd element for the 2nd time-point, and so on.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## [[5]]</span></span>
 <span><span class="co">##               x         y         z timepoint</span></span>
+<span><span class="co">##           &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">##    1: 10.088854 10.171541 10.122280     SYN-4</span></span>
 <span><span class="co">##    2: 14.776449 10.189092 10.621575     SYN-4</span></span>
 <span><span class="co">##    3:  9.652116 12.567544  9.282672     SYN-4</span></span>
@@ -370,12 +368,13 @@ read in all your datasets as one giant <code>data.table</code>.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d3.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d4.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbindlist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbindlist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>Double check the data is read in properly:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            x         y         z timepoint</span></span>
+<span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">## 1:  9.598217 11.728198 11.382064      Mock</span></span>
 <span><span class="co">## 2:  8.937549  8.653750 11.107314      Mock</span></span>
 <span><span class="co">## 3:  9.632932  9.657278  9.115804      Mock</span></span>
@@ -385,6 +384,7 @@ read in all your datasets as one giant <code>data.table</code>.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            x         y         z timepoint</span></span>
+<span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
 <span><span class="co">## 1:  7.954781  9.241713  9.429919     SYN-4</span></span>
 <span><span class="co">## 2: 21.234807 30.522073 30.590687     SYN-4</span></span>
 <span><span class="co">## 3:  9.703690  8.319128  9.579323     SYN-4</span></span>
@@ -413,6 +413,7 @@ must be a vector.</li>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat.clust</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            x         y         z timepoint TrackSOM_cluster</span></span>
+<span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;            &lt;num&gt;</span></span>
 <span><span class="co">## 1:  9.598217 11.728198 11.382064      Mock               62</span></span>
 <span><span class="co">## 2:  8.937549  8.653750 11.107314      Mock               53</span></span>
 <span><span class="co">## 3:  9.632932  9.657278  9.115804      Mock               86</span></span>
@@ -420,6 +421,7 @@ must be a vector.</li>
 <span><span class="co">## 5: 30.426699 31.290929 28.901204      Mock               16</span></span>
 <span><span class="co">## 6: 30.789497 30.069909 30.767145      Mock                6</span></span>
 <span><span class="co">##    TrackSOM_metacluster TrackSOM_metacluster_lineage_tracking</span></span>
+<span><span class="co">##                  &lt;fctr&gt;                                &lt;fctr&gt;</span></span>
 <span><span class="co">## 1:                    2                                     B</span></span>
 <span><span class="co">## 2:                    2                                     B</span></span>
 <span><span class="co">## 3:                    2                                     B</span></span>
@@ -544,28 +546,26 @@ file format as the <code>file.format</code> parameter.</p>
 welcome feedbacks!</p>
 <p>Thank you for your interest!</p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Givanna Putri, Davis Edwards, Mark Read.</p>
+  <p>Developed by Givanna Putri, Davis Edwards, Mark Read.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

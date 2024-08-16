@@ -1,90 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/404.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/articles/TrackSOM-workflow.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/CheckSplits.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/ConcatenateClusteringDetails.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/DrawNetworkPlot.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/DrawTimeseriesHeatmap.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/ExportClusteringDetailsOnly.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetClusterOrigins.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetClusterProportions.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetColourPallete.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetFirstID.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetGeomPoint.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetNewID.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetNodesPerCluster.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/GetTransitionsAsEdges.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/ParseInput.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/TrackSOM.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/TrackingNoMerging.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/TrackingWithMerging.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/clustWithNAs.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/get_idx_pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/get_idx_roundclsbracket.html</loc>
-  </url>
-  <url>
-    <loc>https://ghar1821.github.io/TrackSOM/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ghar1821.github.io/TrackSOM/404.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/CONTRIBUTING.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/LICENSE-text.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/articles/TrackSOM-workflow.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/articles/index.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/authors.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/index.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/CheckSplits.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/ConcatenateClusteringDetails.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/DrawNetworkPlot.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/DrawTimeseriesHeatmap.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/ExportClusteringDetailsOnly.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetClusterOrigins.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetClusterProportions.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetColourPallete.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetFirstID.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetGeomPoint.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetNewID.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetNodesPerCluster.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/GetTransitionsAsEdges.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/ParseInput.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/TrackSOM.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/TrackingNoMerging.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/TrackingWithMerging.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/clustWithNAs.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/create_flowframe.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/get_idx_pipe.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/get_idx_roundclsbracket.html</loc></url>
+<url><loc>https://ghar1821.github.io/TrackSOM/reference/index.html</loc></url>
 </urlset>
+
