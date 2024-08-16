@@ -1,6 +1,3 @@
-context("Tracking check metacluster ID complex with or without merging")
-library(TrackSOM)
-
 #' Test merge then split
 test_that("merge then split", {
 

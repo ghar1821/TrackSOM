@@ -1,5 +1,3 @@
-context("Test getting edge transitions")
-library(TrackSOM)
 library(data.table)
 
 test_that("split_found_1", {

@@ -3,25 +3,33 @@
 #' TrackSOM
 #'
 #' Run the TrackSOM algorithm.
-#' Method to run general TrackSOM workflow.
 #' Will run Tracking by default with no merging allowed.
 #'
-#' @param inputFiles NO DEFAULT. Vector of filenames, each corresponds to the
-#'   file containing data for a time point
+#' @param inputFiles NO DEFAULT. Either a vector of filenames or a list of `data.table` objects
+#' or a `data.table` object.
+#' If a vector, each element should correspond to a file belonging to a timepoint.
+#' If a list, each element should correspond to a `data.table` object belonging to a timepoint.
+#' If a `data.table` object, make sure `timepoints` and `timepointCol` is not NULL.
+#' Make sure the vector or list is ordered such that the 1st element corresponds to
+#' the 1st time-point, the 2nd element corresponds to the 2nd time-point, etc.
 #' @param colsToUse NO DEFAULT. Vector of column names to be used to train SOM.
-#'   One list which must be same for all time periods.
+#' One list which must be same for all time periods.
+#' @param timepoints DEFAULT NULL. A vector of time-points in order.
+#' Only used if inputFiles is a `data.table` object
+#' @param timepointCol DEFAULT NULL. A character denoting the column in inputFile that
+#' corresponds to the time-point each cell belongs to.
+#' Only used if inputFiles is a `data.table` object
 #' @param maxMeta DEFAULT NULL. Numeric. Maximum number of meta clusters for all
-#'   time point. TrackSOM use this to limit the number of meta clusters allowed
-#'   when it is given the freedom to decide the optimum number of meta clusters.
+#' time point. TrackSOM use this to limit the number of meta clusters allowed
+#' when it is given the freedom to decide the optimum number of meta clusters.
 #' @param nClus DEFAULT NULL. Numeric or Vector of numbers. If single number,
-#'   TrackSOM will produce same number of meta clusters per time point.
-#'   Otherwise, it will use the entries in the vector. Number of meta clusters
-#'   must be at least 3 for each time point.
+#' TrackSOM will produce same number of meta clusters per time point.
+#' Otherwise, it will use the entries in the vector. Number of meta clusters
+#' must be at least 3 for each time point.
 #' @param tracking DEFAULT TRUE. Whether to track cluster changes (TRUE), or
-#'   just cluster (NULL).
+#' just cluster (NULL).
 #' @param noMerge DEFAULT FALSE. Whether to allow meta-cluster merging (FALSE) 
-#'   or not (TRUE).
-#' @param dataFileType DEFAULT data.frame. What is the type of your inputFiles?
+#' or not (TRUE).
 #' @param xdim DEFAULT 10. SOM grid size.
 #' @param ydim DEFAULT 10. SOM grid size.
 #' @param seed DEFAULT 42. Random seed number.
@@ -40,9 +48,9 @@
 #'
 #' @usage TrackSOM (inputFiles, colsToUse, maxMeta, ...)
 #'
-#' @import FlowSOM
-#' @import flowCore
+#' @importFrom flowCore logicleTransform
 #' @import data.table
+#' @import FlowSOM
 #'
 #' @examples
 #'
@@ -60,6 +68,8 @@
 #' @export
 
 TrackSOM <- function(inputFiles, colsToUse,
+                     timepoints = NULL,
+                     timepointCol = NULL,
                      tracking = TRUE,
                      noMerge = FALSE,
                      maxMeta = NULL,
@@ -109,21 +119,22 @@ TrackSOM <- function(inputFiles, colsToUse,
   }
 
   # Read files
-  dataFileType <- match.arg(dataFileType)
 
 
-  fsom <- ParseInput(dataFileType = dataFileType, 
-                     inputFiles = inputFiles, 
-                     compensate = compensate, 
-                     spillover = spillover,
-                     transform = transform,
-                     toTransform = toTransform,
-                     transformFunction = transformFunction,
-                     scale = scale,
-                     scaled.center = scaled.center,
-                     scaled.scale = scaled.scale,
-                     silent = silent,
-                     colsToUse = colsToUse
+  fsom <- ParseInput(
+      inputFiles = inputFiles, 
+        compensate = compensate, 
+        spillover = spillover,
+        transform = transform,
+        toTransform = toTransform,
+        transformFunction = transformFunction,
+        scale = scale,
+        scaled.center = scaled.center,
+        scaled.scale = scaled.scale,
+        silent = silent,
+        colsToUse = colsToUse,
+        timepoints = timepoints,
+        timepointCol = timepointCol
   )
 
 
@@ -161,7 +172,10 @@ TrackSOM <- function(inputFiles, colsToUse,
   codes <- vector("list", length(inputFiles))
   cluster_codes <- vector("list", length(inputFiles))
 
-  message("Extracting SOM nodes for each time point")
+  if (!silent) {
+      message("Extracting SOM nodes for each time point")
+  }
+  
   # Loop through data subsets and create new codes (a matrix of averages for
   # each column) based on data in a time point only.
   for (i in 1:length(inputFiles)) {
@@ -196,7 +210,10 @@ TrackSOM <- function(inputFiles, colsToUse,
   # Run clustering - this will perform clustering only on nodes with datapoints
   # in a given time period
 
-  message("Running meta clustering")
+  if (!silent) {
+      message("Running meta clustering")
+  }
+  
   for (i in 1:(length(inputFiles))) {
     map <- fsom$map$coding[[i]]
     map2 <- map[,1]
@@ -204,9 +221,13 @@ TrackSOM <- function(inputFiles, colsToUse,
     cluster_codes <- map[rowSums(!is.na(map)) > 0,]
 
     num_codes <- nrow(cluster_codes)
-    message(paste("Meta clustering time point", i, "with", num_codes,
-                  "SOM nodes"))
-
+    
+    if (!silent) {
+        message(paste("Meta clustering time point", i, "with", num_codes,
+                      "SOM nodes"))
+    }
+    
+    
     if (is.null(nClus)){
       # if the requested max meta is larger than number of nodes available, the
       # following will fail. Thus need to just exist here and fail
@@ -320,126 +341,4 @@ clustWithNAs <- function(values, mcs) {
 
 }
 
-#' ParseInput
-#' 
-#' Convert the input data to FlowSOM object ready to be processed.
-#' Many of the parameters are used by FlowSOM's ReadInput function.
-#' The description for these parameters are taken from FlowSOM.
-#' 
-#' @param dataFileType The type of input data. Can be csv, fcs, or data.frame
-#' @param inputFiles The list containing the input data
-#' @param compensate Whether to run data compensation
-#' @param spillover The spillover matrix to compensate
-#' @param transform Whether to run data transformation
-#' @param toTransform column names or indices to transform
-#' @param transformFunction The transform function to run
-#' @param scale Whether to scale the data
-#' @param scale.center See \link{base::scale}
-#' @param scale.scale See \link{base::scale}
-#' @param silent Whether to show progress updates
-#' @param colToUse Which column to be used by TrackSOM 
-#' 
-#' @return FlowSOM object
-ParseInput <-
-  function(dataFileType,
-           inputFiles,
-           compensate,
-           spillover,
-           transform,
-           toTransform,
-           transformFunction,
-           scale,
-           scaled.center,
-           scaled.scale,
-           silent,
-           colsToUse) {
-    
-    if (dataFileType == '.fcs') {
-      fsom <- ReadInput(
-        inputFiles,
-        pattern = ".fcs",
-        compensate  =  compensate,
-        spillover = spillover,
-        transform = transform,
-        toTransform = toTransform,
-        transformFunction = transformFunction,
-        scale = scale,
-        scaled.center = scaled.center,
-        scaled.scale = scaled.scale,
-        silent = silent
-      )
-    } else if (dataFileType == '.csv') {
-      data_ff <- lapply(inputFiles, function(input_file) {
-        input_dat <- fread(input_file)
-        input_dat <- input_dat[, colsToUse, with = FALSE]
-        
-        # convert to flowFrame. Pain in the butt
-        metadata <-
-          data.frame(
-            name = dimnames(input_dat)[[2]],
-            desc = paste('column', dimnames(input_dat)[[2]], 'from dataset')
-          )
-        # in order to create a flow frame, data (exprs param) needs to be read as
-        # matrix
-        input_dat_ff <- new(
-          "flowFrame",
-          exprs = as.matrix(input_dat),
-          parameters = Biobase::AnnotatedDataFrame(metadata)
-        )
-        return(input_dat_ff)
-      })
-      data_flowset <- as(data_ff, "flowSet")
-      
-      fsom <- ReadInput(
-        data_flowset,
-        compensate  =  compensate,
-        spillover = spillover,
-        transform = transform,
-        toTransform = toTransform,
-        transformFunction = transformFunction,
-        scale = scale,
-        scaled.center = scaled.center,
-        scaled.scale = scaled.scale,
-        silent = silent
-      )
-    } else if (dataFileType == 'data.frame') {
-      data_ff <- lapply(inputFiles, function(input_file) {
-        input_dat <- input_file[, colsToUse, with = FALSE]
-        
-        # convert to flowFrame. Pain in the butt
-        metadata <-
-          data.frame(
-            name = dimnames(input_dat)[[2]],
-            desc = paste('column', dimnames(input_dat)[[2]], 'from dataset')
-          )
-        # in order to create a flow frame, data (exprs param) needs to be read as
-        # matrix
-        input_dat_ff <- new(
-          "flowFrame",
-          exprs = as.matrix(input_dat),
-          parameters = Biobase::AnnotatedDataFrame(metadata)
-        )
-        return(input_dat_ff)
-      })
-      data_flowset <- as(data_ff, "flowSet")
-      
-      fsom <- ReadInput(
-        data_flowset,
-        compensate  =  compensate,
-        spillover = spillover,
-        transform = transform,
-        toTransform = toTransform,
-        transformFunction = transformFunction,
-        scale = scale,
-        scaled.center = scaled.center,
-        scaled.scale = scaled.scale,
-        silent = silent
-      )
-    } else {
-      stop(
-        "The file format specified as dataFileType is not supported.
-        Please choose either .fcs or .csv or data.frame"
-      )
-    }
-    return(fsom)
-  }
+

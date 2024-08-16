@@ -7,11 +7,23 @@
 TrackSOM (inputFiles, colsToUse, maxMeta, ...)
 }
 \arguments{
-\item{inputFiles}{NO DEFAULT. Vector of filenames, each corresponds to the
-file containing data for a time point}
+\item{inputFiles}{NO DEFAULT. Either a vector of filenames or a list of `data.table` objects
+or a `data.table` object.
+If a vector, each element should correspond to a file belonging to a timepoint.
+If a list, each element should correspond to a `data.table` object belonging to a timepoint.
+If a `data.table` object, make sure `timepoints` and `timepointCol` is not NULL.
+Make sure the vector or list is ordered such that the 1st element corresponds to
+the 1st time-point, the 2nd element corresponds to the 2nd time-point, etc.}
 
 \item{colsToUse}{NO DEFAULT. Vector of column names to be used to train SOM.
 One list which must be same for all time periods.}
+
+\item{timepoints}{DEFAULT NULL. A vector of time-points in order.
+Only used if inputFiles is a `data.table` object}
+
+\item{timepointCol}{DEFAULT NULL. A character denoting the column in inputFile that
+corresponds to the time-point each cell belongs to.
+Only used if inputFiles is a `data.table` object}
 
 \item{tracking}{DEFAULT TRUE. Whether to track cluster changes (TRUE), or
 just cluster (NULL).}
@@ -34,8 +46,6 @@ must be at least 3 for each time point.}
 
 \item{ydim}{DEFAULT 10. SOM grid size.}
 
-\item{dataFileType}{DEFAULT data.frame. What is the type of your inputFiles?}
-
 \item{...}{other parameters for FlowSOM functions ReadInput, BuildSOM and
 BuildMST. See FlowSOM vignette for specific parameter information}
 }
@@ -52,7 +62,6 @@ tracking function for each time step
 }
 \description{
 Run the TrackSOM algorithm.
-Method to run general TrackSOM workflow.
 Will run Tracking by default with no merging allowed.
 }
 \examples{

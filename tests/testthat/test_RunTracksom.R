@@ -1,5 +1,3 @@
-context("Test running TrackSOM")
-library(TrackSOM)
 library(data.table)
 
 test_that("Merging works for prescribed invariant", {
@@ -13,11 +11,11 @@ test_that("Merging works for prescribed invariant", {
     })
     fsom <- TrackSOM(
         inputFiles = data_files,
-        dataFileType = '.csv',
         colsToUse = c("x", "y", "z"),
         nClus = 10,
         tracking = TRUE,
-        noMerge = FALSE
+        noMerge = FALSE,
+        silent = TRUE
     )
     dat <- lapply(data_files, function(d) fread(d))
     dat <- rbindlist(dat)
@@ -45,11 +43,11 @@ test_that("Merging works for prescribed variant", {
     nclust <- c(10, 15, 20, 21, 30)
     fsom <- TrackSOM(
         inputFiles = data_files,
-        dataFileType = '.csv',
         colsToUse = c("x", "y", "z"),
         nClus = nclust,
         tracking = TRUE,
-        noMerge = FALSE
+        noMerge = FALSE,
+        silent = TRUE
     )
     dat <- lapply(data_files, function(d) fread(d))
     dat <- rbindlist(dat)
@@ -81,11 +79,11 @@ test_that("Merging works for autonomous adaptive", {
     })
     fsom <- TrackSOM(
         inputFiles = data_files,
-        dataFileType = '.csv',
         colsToUse = c("x", "y", "z"),
         maxMeta = 20,
         tracking = TRUE,
-        noMerge = FALSE
+        noMerge = FALSE,
+        silent = TRUE
     )
     dat <- lapply(data_files, function(d) fread(d))
     dat <- rbindlist(dat)
@@ -116,11 +114,11 @@ test_that("No merging works for prescribed invariant", {
     })
     fsom <- TrackSOM(
         inputFiles = data_files,
-        dataFileType = '.csv',
         colsToUse = c("x", "y", "z"),
         nClus = 10,
         tracking = TRUE,
-        noMerge = TRUE
+        noMerge = TRUE,
+        silent = TRUE
     )
     dat <- lapply(data_files, function(d) fread(d))
     dat <- rbindlist(dat)
@@ -148,11 +146,11 @@ test_that("No merging works for prescribed variant", {
     nclust <- c(10, 15, 20, 21, 30)
     fsom <- TrackSOM(
         inputFiles = data_files,
-        dataFileType = '.csv',
         colsToUse = c("x", "y", "z"),
         nClus = nclust,
         tracking = TRUE,
-        noMerge = TRUE
+        noMerge = TRUE,
+        silent = TRUE
     )
     dat <- lapply(data_files, function(d) fread(d))
     dat <- rbindlist(dat)
@@ -185,11 +183,11 @@ test_that("No merging works for autonomous adaptive", {
     })
     fsom <- TrackSOM(
         inputFiles = data_files,
-        dataFileType = '.csv',
         colsToUse = c("x", "y", "z"),
         maxMeta = 20,
         tracking = TRUE,
-        noMerge = TRUE
+        noMerge = TRUE,
+        silent = TRUE
     )
     dat <- lapply(data_files, function(d) fread(d))
     dat <- rbindlist(dat)

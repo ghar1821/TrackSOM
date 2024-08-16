@@ -1,6 +1,3 @@
-context("Tracking merged clusters for merging allowed and disallowed")
-library(TrackSOM)
-
 #' Test simple merge
 test_that("simple merge", {
 

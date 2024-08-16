@@ -1,7 +1,3 @@
-context("Utility Functions")
-library(TrackSOM)
-
-
 test_that("collate results normal", {
   fsom.obj <- list()
 

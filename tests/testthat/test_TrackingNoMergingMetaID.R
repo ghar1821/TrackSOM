@@ -1,8 +1,3 @@
-context("Tracking check metacluster ID no merge")
-library(TrackSOM)
-
-
-
 #' Test to make sure ids are assigned alphabetically
 #' 4 codes, 3 meta clusters.
 #' 2 meta clusters contain 1 code each, last meta cluster contains 2 codes.

@@ -1,6 +1,3 @@
-context("Tracking split clusters no merging allowed")
-library(TrackSOM)
-
 #' Test simple split
 test_that("simple split", {
 

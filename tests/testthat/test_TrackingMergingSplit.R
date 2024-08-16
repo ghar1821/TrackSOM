@@ -1,11 +1,3 @@
-context("Tracking split clusters merging allowed")
-library(TrackSOM)
-
-# how to run on rstudio
-# setwd to the directory of this file
-# then type test_dir(".")
-
-
 #' Test simple split
 test_that("simple split", {
 

@@ -37,7 +37,7 @@ Suggests:
     devtools,
     knitr,
     rmarkdown
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://ghar1821.github.io/TrackSOM/
