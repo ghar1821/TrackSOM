@@ -3,7 +3,7 @@ pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   TrackSOM-workflow: TrackSOM-workflow.html
-last_built: 2024-08-16T01:24Z
+last_built: 2024-08-16T01:30Z
 urls:
   reference: https://ghar1821.github.io/TrackSOM/reference
   article: https://ghar1821.github.io/TrackSOM/articles

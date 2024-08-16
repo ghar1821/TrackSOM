@@ -76,9 +76,9 @@ The dataset files are provided in the <code>inst</code> directory: <a href="http
 <code>devtools</code> to install the package from the following <a href="https://github.com/ghar1821/TrackSOM" class="external-link">TrackSOM github repo</a>.
 For devtools, the repo parameter will be:
 <code>ghar1821/TrackSOM</code>.</p>
-<p>The following code shall import the TrackSOM package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ghar1821.github.io/TrackSOM/">TrackSOM</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ghar1821.github.io/TrackSOM/">TrackSOM</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="importing-dataset">Importing dataset<a class="anchor" aria-label="anchor" href="#importing-dataset"></a>
@@ -164,31 +164,22 @@ the <strong>absolute path</strong> for the dataset files!</em></p>
 FCS files, each belonging to a time-point.</p>
 </div>
 <div class="section level3">
-<h3 id="dataset-as-data-table-object">Dataset as <code>data.table</code> object<a class="anchor" aria-label="anchor" href="#dataset-as-data-table-object"></a>
+<h3 id="dataset-as-a-list-of-data-table-objects">Dataset as a list of <code>data.table</code> objects<a class="anchor" aria-label="anchor" href="#dataset-as-a-list-of-data-table-objects"></a>
 </h3>
 <p>Sometimes, it is convenient to have the dataset stored as the
 <code>data.table</code> object files, e.g. when you need to run some
-code to preprocess your data using R! As an example, supposed the
+code to preprocess your data using R. As an example, supposed the
 synthetic dataset CSV files were already read in as
 <code>data.table</code> object prior to running TrackSOM (say you did
-some preliminary clean up or filtering). What you need to do is organise
-them in a list such that each element is a <code>data.table</code>
-object for the dataset in a time-point. <em>Important:</em> the list
-must be organised such as the first element is the data for the very
-first time-point, the 2nd element for the 2nd time-point, and so on.</p>
+some preliminary clean up or filtering).</p>
+<p>What you need to do is organise them in a list such that each element
+is a <code>data.table</code> object for the dataset in a time-point.
+<em>Important:</em> the list must be organised such as the first element
+is the data for the very first time-point, the 2nd element for the 2nd
+time-point, and so on.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="va">data.files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d0.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d1.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d2.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d3.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d4.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Let’s do a quick preview of the data:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files.fullpath</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat</span></span></code></pre></div>
 <pre><code><span><span class="co">## [[1]]</span></span>
 <span><span class="co">##               x         y         z timepoint</span></span>
 <span><span class="co">##           &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
@@ -265,17 +256,67 @@ first time-point, the 2nd element for the 2nd time-point, and so on.</p>
 <span><span class="co">## 7100: 36.910728 29.551236 29.926378     SYN-4</span></span></code></pre>
 <p>As you can see, there are 5 elements in the list, each containing a
 dataset belonging to a time-point.</p>
+<div class="section level4">
+<h4 id="dataset-as-a-data-table-object">Dataset as a <code>data.table</code> object<a class="anchor" aria-label="anchor" href="#dataset-as-a-data-table-object"></a>
+</h4>
+<p>You can also represent your dataset as just one
+<code>data.table</code> object containing a column denoting which
+time-point each cell comes from.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">timepoints</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">data.files.fullpath</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">data_file_i</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">data.files.fullpath</span><span class="op">[[</span><span class="va">data_file_i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">dt</span><span class="op">[[</span><span class="st">'timepoint'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">timepoints</span><span class="op">[</span><span class="va">data_file_i</span><span class="op">]</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbindlist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##            x         y         z timepoint</span></span>
+<span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;int&gt;</span></span>
+<span><span class="co">## 1:  9.598217 11.728198 11.382064         0</span></span>
+<span><span class="co">## 2:  8.937549  8.653750 11.107314         0</span></span>
+<span><span class="co">## 3:  9.632932  9.657278  9.115804         0</span></span>
+<span><span class="co">## 4:  9.770393 12.478038 11.451082         0</span></span>
+<span><span class="co">## 5: 30.426699 31.290929 28.901204         0</span></span>
+<span><span class="co">## 6: 30.789497 30.069909 30.767145         0</span></span></code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##            x         y         z timepoint</span></span>
+<span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;int&gt;</span></span>
+<span><span class="co">## 1:  7.954781  9.241713  9.429919         4</span></span>
+<span><span class="co">## 2: 21.234807 30.522073 30.590687         4</span></span>
+<span><span class="co">## 3:  9.703690  8.319128  9.579323         4</span></span>
+<span><span class="co">## 4: 17.654003 30.891041 29.390515         4</span></span>
+<span><span class="co">## 5:  9.089960  9.744563 12.483508         4</span></span>
+<span><span class="co">## 6: 36.910728 29.551236 29.926378         4</span></span></code></pre>
+<p>Here, the timepoint column denotes which timepoint the cell comes
+from.</p>
+</div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="running-tracksom">Running TrackSOM<a class="anchor" aria-label="anchor" href="#running-tracksom"></a>
 </h2>
 <p>Depending on how your dataset is stored, the parameter
-<code>inputFiles</code> is either a vector of absolute path of your CSV
-or FCS files or a list of <code>data.table</code> object. Additionally,
-you need to specify the type as the parameter <code>dataFileType</code>.
-It can be either <code>.csv</code>, <code>.fcs</code>, or
-<code>data.frame</code> depending on how your dataset is stored.</p>
+<code>inputFiles</code> is either:</p>
+<ol style="list-style-type: decimal">
+<li>a vector of absolute path of your CSV or FCS files</li>
+<li>a list of <code>data.table</code> object.</li>
+<li>A <code>data.table</code> object</li>
+</ol>
+<p>If <code>inputFiles</code> is option 3 above, make sure you specify
+the following parameters:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>timepointCol</code>: the name of the column denoting the
+timepoint of your cells.</li>
+<li>
+<code>timepoints</code>: a vector of timepoints in order. Make sure
+these values exist in <code>timepointCol</code> column.</li>
+</ol>
 <div class="section level3">
 <h3 id="other-parameters">Other parameters<a class="anchor" aria-label="anchor" href="#other-parameters"></a>
 </h3>
@@ -320,7 +361,7 @@ information.</p>
 time-point.</li>
 </ul>
 <p>The remaining parameters will be set to the default values.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tracksom.result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/TrackSOM.html">TrackSOM</a></span><span class="op">(</span>inputFiles <span class="op">=</span> <span class="va">data.files.fullpath</span>,</span>
 <span>                            colsToUse <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'x'</span>, <span class="st">'y'</span>, <span class="st">'z'</span><span class="op">)</span>,</span>
 <span>                            tracking <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -359,9 +400,8 @@ ordering of your dataset.</li>
 </ul>
 <p>To use <code>ConcatenateClusteringDetails</code>, you need to first
 read in all your datasets as one giant <code>data.table</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="va">data.files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data.files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d0.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d1.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"synthetic_d2.csv"</span>, package <span class="op">=</span> <span class="st">"TrackSOM"</span><span class="op">)</span>,</span>
@@ -371,7 +411,7 @@ read in all your datasets as one giant <code>data.table</code>.</p>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data.files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbindlist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>Double check the data is read in properly:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            x         y         z timepoint</span></span>
 <span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
@@ -381,7 +421,7 @@ read in all your datasets as one giant <code>data.table</code>.</p>
 <span><span class="co">## 4:  9.770393 12.478038 11.451082      Mock</span></span>
 <span><span class="co">## 5: 30.426699 31.290929 28.901204      Mock</span></span>
 <span><span class="co">## 6: 30.789497 30.069909 30.767145      Mock</span></span></code></pre>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            x         y         z timepoint</span></span>
 <span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;</span></span>
@@ -402,7 +442,7 @@ time-point.</li>
 must be a vector.</li>
 </ul>
 <p>Now let’s attach the meta-cluster ID and the SOM nodes:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat.clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ConcatenateClusteringDetails.html">ConcatenateClusteringDetails</a></span><span class="op">(</span></span>
 <span>    tracksom.result <span class="op">=</span> <span class="va">tracksom.result</span>,</span>
 <span>    dat <span class="op">=</span> <span class="va">dat</span>,</span>
@@ -410,7 +450,7 @@ must be a vector.</li>
 <span>    timepoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Mock'</span>, <span class="st">'SYN-1'</span>, <span class="st">'SYN-2'</span>, <span class="st">'SYN-3'</span>, <span class="st">'SYN-4'</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span></code></pre></div>
 <p>Inspect the content:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat.clust</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            x         y         z timepoint TrackSOM_cluster</span></span>
 <span><span class="co">##        &lt;num&gt;     &lt;num&gt;     &lt;num&gt;    &lt;char&gt;            &lt;num&gt;</span></span>
@@ -459,7 +499,7 @@ can export as CSV file using <code>data.table</code>’s
 <code>DrawNetworkPlot</code> function. Using the clustered and tracked
 data from previous sections, the following is an example on how to use
 the function:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/DrawNetworkPlot.html">DrawNetworkPlot</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat.clust</span>,</span>
 <span>                timepoint.col <span class="op">=</span> <span class="st">"timepoint"</span>,</span>
 <span>                timepoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Mock'</span>, <span class="st">'SYN-1'</span>, <span class="st">'SYN-2'</span>, <span class="st">'SYN-3'</span>, <span class="st">'SYN-4'</span><span class="op">)</span>,</span>
@@ -483,7 +523,7 @@ you want the network plots to be coloured on.</p>
 <p>The function won’t preview any plots, but it will instead store the
 plots as image files and some extra information (median/mean expression
 of markers) as CSV files:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "network_colBy_origin.pdf"      "network_colBy_timepoints.pdf" </span></span>
 <span><span class="co">## [3] "network_colBy_x.pdf"           "network_colBy_y.pdf"          </span></span>
@@ -500,7 +540,7 @@ file format as the <code>file.format</code> parameter.</p>
 <code>DrawTimeseriesHeatmap</code> function. Using the clustered and
 tracked data from previous sections, the following is an example on how
 to use the function:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/DrawTimeseriesHeatmap.html">DrawTimeseriesHeatmap</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat.clust</span>,</span>
 <span>                timepoint.col <span class="op">=</span> <span class="st">"timepoint"</span>,</span>
 <span>                timepoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Mock'</span>, <span class="st">'SYN-1'</span>, <span class="st">'SYN-2'</span>, <span class="st">'SYN-3'</span>, <span class="st">'SYN-4'</span><span class="op">)</span>,</span>
@@ -519,7 +559,7 @@ you want the network plots to be coloured on.</p>
 <p>The function won’t preview any plots, but it will instead store the
 plots as image files and some extra information (median/mean expression
 of markers) as CSV files:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "network_colBy_origin.pdf"            </span></span>
 <span><span class="co">##  [2] "network_colBy_timepoints.pdf"        </span></span>
