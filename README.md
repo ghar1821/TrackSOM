@@ -8,7 +8,7 @@ TrackSOM includes a novel clustering and cluster-tracking algorithm, and a varie
 
 ## Step by step walkthrough
 
-A sample workflow is available on the [ImmuneDynamics website](https://immunedynamics.io/research/time-series_workflow/TrackSOM-workflow.html).
+A sample workflow is available on the [ImmuneDynamics website](https://immunedynamics.io/spectre/tutorials/time_series/TrackSOM-workflow.html) or from the Articles tab on [TrackSOM website](https://ghar1821.github.io/TrackSOM/).
 
 The raw sample workflow files are also available in the [`doc`](https://github.com/ghar1821/TrackSOM/blob/master/doc).
 They are available in `.Rmd`, `.R`, and `.html` format.
